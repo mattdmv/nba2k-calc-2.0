@@ -3,7 +3,7 @@ import utils
  
 app = Flask(__name__)
 
-@app.route('/predict_player_rating', methods=['GET', 'POST'])
+@app.route('/predict', methods=['GET', 'POST'])
 def predict_player_rating():
     player_name = request.form['player_name']
 

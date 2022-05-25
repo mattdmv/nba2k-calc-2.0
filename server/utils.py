@@ -3,7 +3,6 @@ import json
 import numpy as np
 import pandas as pd
 from nba_api.stats.static import players
-from nba_api.stats.static import teams
 from nba_api.stats.endpoints import playercareerstats
 from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import playergamelog
@@ -36,10 +35,11 @@ def find_player_id(player_name):
     return player_id
 
 def find_team_id(player_name):
+    player_id = find_player_id(player_name)
     player_stats = playercareerstats.PlayerCareerStats(player_id = player_id, per_mode36 = 'PerGame').get_data_frames()[0]
     player_stats_current_season = player_stats.iloc[-1]
 
-    team_id = player_stats_current_season['TEAM_ID']
+    team_id = int(player_stats_current_season['TEAM_ID'])
 
     return team_id
 
