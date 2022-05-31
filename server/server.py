@@ -1,11 +1,14 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import utils
  
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict_player_rating():
-    player_name = request.form['player_name']
+    # player_name = request.form['name'] // testing with postman
+    player_name = request.json['name']
 
     response = jsonify({
         'predicted_value': utils.main_pipeline(player_name), 
@@ -28,4 +31,4 @@ def hello():
 
 if __name__=="__main__":
     print("Starting Flask Server for NBA2K player rating prediction!")
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')                             

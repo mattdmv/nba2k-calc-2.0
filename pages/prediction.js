@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Stats from "../components/Stats";
-import Button from "../components/Button";
+import Prediction from "../components/Prediction";
 import { motion } from 'framer-motion';
 
 // definition of easing curve
@@ -52,6 +51,19 @@ const fadeInLeft = {
   }
 };
 
+const fadeIn = {
+  initial: {
+    opacity: 0
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: .6,
+      ease: easing
+    }
+  }
+};
+
 // definition of stagger effect
 const stagger = {
   animate: {
@@ -61,7 +73,7 @@ const stagger = {
   }  
 };
 
-function player() {
+function prediction({ data }) {
   return (
     <motion.div 
     initial="initial"
@@ -82,13 +94,20 @@ function player() {
                   height={380}/>
             </motion.div>
         </div>
-        <h1 className="font-bold text-7xl text-center bg-gradient-to-r from-transparent via-black to-transparent">LeBron James</h1>
-        <Stats/>
+        <motion.h1 variants={fadeIn} className="font-bold text-7xl text-center bg-gradient-to-r from-transparent via-black to-transparent">LeBron James</motion.h1>
+        <motion.div variants={stagger}>
+          <motion.div variants={fadeInUp}>
+            <Prediction/>
+          </motion.div>
+        </motion.div>
         <div className="my-10 flex justify-center">
-          <Button title="Another search"/> 
+          <div className="mx-5 p-5 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-900 hover:from-green-600 hover:to-green-900
+          transition-all font-bold">
+            <a href="/">Another search</a>
+          </div>
         </div>
     </motion.div>
   )
 }
 
-export default player
+export default prediction
