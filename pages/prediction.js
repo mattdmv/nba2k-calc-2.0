@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Prediction from "../components/Prediction";
+import Stats from "../components/Stats";
 import { motion } from 'framer-motion';
-import { useRouter } from "next/router";
 
 // definition of easing curve
 const easing = [.6, -.05, .01, .99]
@@ -103,6 +103,9 @@ function prediction({ results }) {
         </div>
         <motion.h1 variants={fadeIn} className="font-bold text-7xl text-center bg-gradient-to-r from-transparent via-black to-transparent">{results.name}</motion.h1>
         <motion.div variants={stagger}>
+        <motion.div variants={fadeInUp}>
+            <Stats stats={results.player_stats}/>
+          </motion.div>
           <motion.div variants={fadeInUp}>
             <Prediction rating={results.predicted_value}/>
           </motion.div>

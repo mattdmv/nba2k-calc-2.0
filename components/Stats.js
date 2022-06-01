@@ -1,4 +1,4 @@
-function Stats() {
+function Stats({ stats }) {
   return (
     <div className="flex justify-center">
         <table>
@@ -18,17 +18,17 @@ function Stats() {
             </tr>
             <tr className="mt-10 bg-gradient-to-r from-transparent via-blue-700 
             to-transparent text-2xl">
-                <td className="px-5 text-center"></td>
-                <td className="px-5 text-center"></td>
-                <td className="px-5 text-center"></td>
-                <td className="px-5 text-center"></td>
-                <td className="px-5 text-center"></td>
-                <td className="px-5 text-center"></td>
-                <td className="px-5 text-center"></td>
-                <td className="px-5 text-center"></td>
-                <td className="px-5 text-center"></td>
-                <td className="px-5 text-center"></td>
-                <td className="px-5 text-center"></td>
+                <td className="px-5 text-center">{stats[0]}</td>
+                <td className="px-5 text-center">{stats[1]}</td>
+                <td className="px-5 text-center">{stats[2]}</td>
+                <td className="px-5 text-center">{stats[3]}</td>
+                <td className="px-5 text-center">{stats[4]}</td>
+                <td className="px-5 text-center">{stats[5]}</td>
+                <td className="px-5 text-center">{stats[6]}</td>
+                <td className="px-5 text-center">{stats[7]}</td>
+                <td className="px-5 text-center">{stats[8]}</td>
+                <td className="px-5 text-center">{stats[9]}</td>
+                <td className="px-5 text-center">{stats[10]}</td>
             </tr>
         </table> 
     </div>
