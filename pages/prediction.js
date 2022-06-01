@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Prediction from "../components/Prediction";
 import { motion } from 'framer-motion';
+import { useRouter } from "next/router";
 
 // definition of easing curve
 const easing = [.6, -.05, .01, .99]
@@ -73,7 +74,13 @@ const stagger = {
   }  
 };
 
-function prediction({ data }) {
+function prediction({ results }) {
+  const playersrc = `https://cdn.nba.com/headshots/nba/latest/1040x760/${results.player_id}.png`
+  console.log(playersrc)
+
+  const teamsrc = `https://cdn.nba.com/logos/nba/${results.team_id}/global/D/logo.svg`
+  console.log(teamsrc)
+
   return (
     <motion.div 
     initial="initial"
@@ -83,21 +90,21 @@ function prediction({ data }) {
         <div className="pt-10 flex w-auto justify-center align-middle">
             <motion.div variants={fadeInRight}>
               <Image
-                src="https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png"
+                src={playersrc}
                 width={520}
                 height={380}/>
             </motion.div>
             <motion.div variants={fadeInLeft}>
               <Image 
-                  src="https://cdn.nba.com/logos/nba/1610612747/global/D/logo.svg"
+                  src={teamsrc}
                   width={520}
                   height={380}/>
             </motion.div>
         </div>
-        <motion.h1 variants={fadeIn} className="font-bold text-7xl text-center bg-gradient-to-r from-transparent via-black to-transparent">LeBron James</motion.h1>
+        <motion.h1 variants={fadeIn} className="font-bold text-7xl text-center bg-gradient-to-r from-transparent via-black to-transparent">{results.name}</motion.h1>
         <motion.div variants={stagger}>
           <motion.div variants={fadeInUp}>
-            <Prediction/>
+            <Prediction rating={results.predicted_value}/>
           </motion.div>
         </motion.div>
         <div className="my-10 flex justify-center">
@@ -108,6 +115,42 @@ function prediction({ data }) {
         </div>
     </motion.div>
   )
+}
+
+
+export async function getServerSideProps({ query }) {
+
+  // Get data from the form.
+  const data = {
+    name: query.name,
+  }
+
+  console.log(data.name)
+
+  // Send the data to the server in JSON format.
+  const JSONdata = JSON.stringify(data)
+
+  // API endpoint where we send form data.
+  const endpoint = process.env.PREDICT_URL
+
+  // Form the request for sending data to the server.
+  const options = {
+    // The method is POST because we are sending data.
+    method: 'POST',
+    // Tell the server we're sending JSON.
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // Body of the request is the JSON data we created above.
+    body: JSONdata,
+  }
+
+  // Fetch data from external API
+  const res = await fetch(endpoint, options)
+  const results = await res.json()
+
+  // Pass data to the page via props
+  return { props: { results } }
 }
 
 export default prediction

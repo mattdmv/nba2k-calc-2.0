@@ -11,6 +11,7 @@ def predict_player_rating():
     player_name = request.json['name']
 
     response = jsonify({
+        'name': player_name,
         'predicted_value': utils.main_pipeline(player_name), 
         'player_stats': utils.transform_player_stats(player_name),
         'player_id': utils.find_player_id(player_name),
