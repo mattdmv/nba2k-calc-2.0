@@ -2,6 +2,7 @@ import Image from "next/image";
 import Prediction from "../components/Prediction";
 import Stats from "../components/Stats";
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 
 // definition of easing curve
 const easing = [.6, -.05, .01, .99]
@@ -75,6 +76,9 @@ const stagger = {
 };
 
 function prediction({ results }) {
+
+  const router = useRouter();
+
   const playersrc = `https://cdn.nba.com/headshots/nba/latest/1040x760/${results.player_id}.png`
   console.log(playersrc)
 
@@ -91,17 +95,17 @@ function prediction({ results }) {
             <motion.div variants={fadeInRight}>
               <Image
                 src={playersrc}
-                width={520}
-                height={380}/>
+                width={260}
+                height={190}/>
             </motion.div>
             <motion.div variants={fadeInLeft}>
               <Image 
                   src={teamsrc}
-                  width={520}
-                  height={380}/>
+                  width={260}
+                  height={190}/>
             </motion.div>
         </div>
-        <motion.h1 variants={fadeIn} className="font-bold text-7xl text-center bg-gradient-to-r from-transparent via-black to-transparent">{results.name}</motion.h1>
+        <motion.h1 variants={fadeIn} className="font-bold text-5xl 2xl:text-7xl text-center bg-gradient-to-r from-transparent via-black to-transparent">{results.name}</motion.h1>
         <motion.div variants={stagger}>
         <motion.div variants={fadeInUp}>
             <Stats stats={results.player_stats}/>
@@ -111,9 +115,9 @@ function prediction({ results }) {
           </motion.div>
         </motion.div>
         <div className="my-10 flex justify-center">
-          <div className="mx-5 p-5 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-900 hover:from-green-600 hover:to-green-900
-          transition-all font-bold">
-            <a href="/">Another search</a>
+          <div className="mx-2 p-4 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-900 hover:from-green-600 hover:to-green-900
+          hover:cursor-pointer transition-all font-bold">
+            <a onClick={() => router.push('/')}>Another search</a>
           </div>
         </div>
     </motion.div>

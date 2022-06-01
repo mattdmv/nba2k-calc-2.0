@@ -50,8 +50,8 @@ export default function Home() {
         variants={stagger}
         className="flex-column w-full my-auto">
           <motion.div variants={fadeInUp}>
-            <h1 className="font-extrabold text-7xl text-center bg-gradient-to-r from-transparent via-blue-700 to-transparent">NBA2k player rating calculator</h1>
-            <p className="font-bold text-center text-xl bg-gradient-to-r from-transparent via-blue-700 to-transparent">Predicting NBA2k player ratings is now one of the easiest tasks in the world. You just need to search for a player and you're good to go!</p>
+            <h1 className="font-extrabold text-5xl xl:text-7xl text-center bg-gradient-to-r from-transparent via-blue-700 to-transparent">NBA2k player rating calculator</h1>
+            <p className="font-bold text-center text-base xl:text-xl bg-gradient-to-r from-transparent via-blue-700 to-transparent">Predicting NBA2k player ratings is now one of the easiest tasks in the world. You just need to search for a player and you're good to go!</p>
           </motion.div>
           <motion.div variants={fadeInUp}
           className="flex w-full h-max py-10 justify-center">
