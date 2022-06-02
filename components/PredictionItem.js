@@ -1,4 +1,4 @@
-function Prediction({rating}) {
+function PredictionItem({rating}) {
   return (
     <div className="flex justify-center m-6">
         <h1 className="font-extrabold text-5xl 2xl:text-7xl text-center bg-gradient-to-r 
@@ -9,4 +9,4 @@ function Prediction({rating}) {
   )
 }
 
-export default Prediction
+export default PredictionItem

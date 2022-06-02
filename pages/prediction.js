@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Prediction from "../components/Prediction";
 import Stats from "../components/Stats";
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import PredictionItem from "../components/PredictionItem";
 
-// definition of easing curve
+// definition of easing curvecommi
 const easing = [.6, -.05, .01, .99]
 
 // definition of specific animation we're going to use
@@ -75,7 +75,7 @@ const stagger = {
   }  
 };
 
-function prediction({ results }) {
+function Prediction({ results }) {
 
   const router = useRouter();
 
@@ -111,7 +111,7 @@ function prediction({ results }) {
             <Stats stats={results.player_stats}/>
           </motion.div>
           <motion.div variants={fadeInUp}>
-            <Prediction rating={results.predicted_value}/>
+            <PredictionItem rating={results.predicted_value}/>
           </motion.div>
         </motion.div>
         <div className="my-10 flex justify-center">
@@ -160,4 +160,4 @@ export async function getServerSideProps({ query }) {
   return { props: { results } }
 }
 
-export default prediction
+export default Prediction
