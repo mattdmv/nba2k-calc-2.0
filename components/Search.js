@@ -15,7 +15,7 @@ function Search() {
       name: name,
     }
     
-    console.log(data.name)
+    //console.log(data.name)
 
     router.push({pathname: "/prediction", query: data})
 
