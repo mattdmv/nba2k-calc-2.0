@@ -96,13 +96,15 @@ function Prediction({ results }) {
               <Image
                 src={playersrc}
                 width={260}
-                height={190}/>
+                height={190}
+                alt="player"/>
             </motion.div>
             <motion.div variants={fadeInLeft}>
               <Image 
                   src={teamsrc}
                   width={260}
-                  height={190}/>
+                  height={190}
+                  alt="team logo"/>
             </motion.div>
         </div>
         <motion.h1 variants={fadeIn} className="font-bold text-5xl 2xl:text-7xl text-center bg-gradient-to-r from-transparent via-black to-transparent">{results.name}</motion.h1>

@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import Image from 'next/image';
+//import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Search from '../components/Search';
-import Footer from '../components/Footer';
+//import Footer from '../components/Footer';
 
 // animate: defines animation
 // initial: defines initial state of animation or starting point
